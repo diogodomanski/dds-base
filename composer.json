@@ -3,7 +3,7 @@
 	"description": "Abstract classes for DDS projects",
 	"type": "library",
 	"license": "BSD-3-Clause",
-	"homepage": "https://github.com/diogodomanski/DDSBase",
+	"homepage": "https://github.com/diogodomanski/dds-base",
 	"keywords": [
 		"zf2",
 		"base"
@@ -34,7 +34,7 @@
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "0.1-dev"
+			"dev-master": "master"
 		}
 	}
 }
