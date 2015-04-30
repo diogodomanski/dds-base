@@ -21,6 +21,33 @@ AutoloaderProviderInterface, BootstrapListenerInterface, ConfigProviderInterface
 	/**
 	 * {@inheritDoc}
 	 */
+	public function onBootstrap(EventInterface $event) {
+		
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function getViewHelperConfig() {
+		return array(
+			'factories' => array(
+			)
+		);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function getControllerPluginConfig() {
+		return array(
+			'factories' => array(
+			)
+		);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public function getAutoloaderConfig() {
 		return array(
 			'Zend\Loader\StandardAutoloader' => array(
