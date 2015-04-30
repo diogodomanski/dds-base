@@ -1,0 +1,40 @@
+{
+	"name": "diogodomanski/dds-base",
+	"description": "Abstract classes for DDS projects",
+	"type": "library",
+	"license": "BSD-3-Clause",
+	"homepage": "https://github.com/diogodomanski/DDSBase",
+	"keywords": [
+		"zf2",
+		"base"
+	],
+	"authors": [
+		{
+			"name": "Diogo Domanski de Souza",
+			"email": "diogo.domanski@gmail.com",
+			"homepage": "http://",
+			"role": "Manager"
+		}
+	],
+	"minimum-stability": "dev",
+	"require": {
+		"php": ">=5.3.3"
+	},
+	"require-dev": {
+		"zendframework/zendframework": "~2.3",
+		"doctrine/common": "*@stable",
+		"doctrine/doctrine-orm-module": "*@stable"
+	},
+	"suggests": {
+	},
+	"autoload": {
+		"psr-0": {
+			"DDSBase\\": "src/"
+		}
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "0.1-dev"
+		}
+	}
+}
