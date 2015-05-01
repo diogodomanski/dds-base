@@ -1,5 +1,7 @@
 <?php
 
+namespace DDSBase\Entity;
+
 interface EntityInterface {
 	/**
 	 * 
