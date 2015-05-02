@@ -17,7 +17,7 @@ abstract class Entity {
 	 * @param string $targetField Target field where the new reference will be set
 	 * @return mixed|null A reference to the especified entity, if any of the fields has a valid value
 	 */
-	public function setReference(\Doctrine\ORM\EntityManager &$em, $entityName, array &$data, array $checkFields, $targetField) {
+	public static function setReference(\Doctrine\ORM\EntityManager &$em, $entityName, array &$data, array $checkFields, $targetField) {
 		foreach($checkFields as $field) {
 			if(isset($data[$field]) && !empty($data[$field])) {
 				return $data[$targetField] = $em->getReference($entityName, $data[$field]);

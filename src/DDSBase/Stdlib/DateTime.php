@@ -73,6 +73,12 @@ abstract class DateTime {
 		return $datefmt->format($date);
 	}
 	
+	/**
+	 * 
+	 * @param int $options
+	 * @param string $locale
+	 * @return string
+	 */
 	public static function getDateFormatterPattern($options = self::TYPE_DATETIME, $locale = null) {
 		$datefmt = new \IntlDateFormatter(
 				(!empty($locale))?$locale:locale_get_default(),
