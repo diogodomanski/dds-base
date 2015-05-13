@@ -31,19 +31,34 @@ abstract class AbstractService {
 
 	/**
 	 * 
+	 * @return \Doctrine\ORM\EntityManager
+	 */
+	protected function getEm() {
+		return $this->em;
+	}
+	
+	/**
+	 * 
 	 * @return \Doctrine\ORM\EntityRepository The repository class
 	 */
 	public function getRepository() {
 		return $this->em->getRepository($this->entityName);
 	}
 
-	public function insert(array $data) {
-		// If entity class has hydrate method
-		if (method_exists($this->entityName, 'hydrate')) {
-			$entity = new $this->entityName();
-			$entity->hydrate($data, $this->em);
-		} else
-			$entity = new $this->entityName($data);
+	public function insert($data) {
+		if(is_array($data)) {
+			// If entity class has hydrate method
+			if (method_exists($this->entityName, 'hydrate')) {
+				$entity = new $this->entityName();
+				$entity->hydrate($data, $this->em);
+			} else
+				$entity = new $this->entityName($data);
+		} else if($data instanceof $this->entityName) {
+			$entity = $data;
+		} else {
+			throw new \InvalidArgumentException(sprintf("Invalid data. It should be an array or an instance of %s.", $this->entityName));
+		}
+		
 
 		// If entity class has insertDate attribute
 		if (method_exists($entity, 'setInsertDate') && $entity->getInsertDate() == null)
@@ -63,15 +78,21 @@ abstract class AbstractService {
 		return $entity;
 	}
 
-	public function update(array $data) {
-		$entity = $this->em->getReference($this->entityName, $data);
+	public function update($data) {
+		if(is_array($data)) {
+			$entity = $this->em->getReference($this->entityName, $data);
 
-		// If entity class has hydrate method
-		if (method_exists($this->entityName, 'hydrate'))
-			$entity->hydrate($data, $this->em);
-		else {
-			$hydrator = new Hydrator\ClassMethods();
-			$hydrator->hydrate($data, $entity);
+			// If entity class has hydrate method
+			if (method_exists($this->entityName, 'hydrate'))
+				$entity->hydrate($data, $this->em);
+			else {
+				$hydrator = new Hydrator\ClassMethods();
+				$hydrator->hydrate($data, $entity);
+			}
+		} else if($data instanceof $this->entityName) {
+			$entity = $data;
+		} else {
+			throw new \InvalidArgumentException(sprintf("Invalid data. It should be an array or an instance of %s.", $this->entityName));
 		}
 
 		// If entity class has updateDate attribute
