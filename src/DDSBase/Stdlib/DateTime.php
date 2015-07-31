@@ -70,7 +70,7 @@ abstract class DateTime {
 				($timezone !== null)?(version_compare(PHP_VERSION, "5.4.0", "<"))?$timezone->getName():$timezone:$timezone
 		);
 		
-		return $datefmt->format($date);
+		return $datefmt->format($date->getTimestamp());
 	}
 	
 	/**
