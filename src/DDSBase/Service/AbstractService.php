@@ -63,6 +63,10 @@ abstract class AbstractService {
 		// If entity class has insertDate attribute
 		if (method_exists($entity, 'setInsertDate') && $entity->getInsertDate() == null)
 			$entity->setInsertDate();
+		
+		// If entity class has createDate attribute
+		if (method_exists($entity, 'setCreateDate') && $entity->getCreateDate() == null)
+			$entity->setCreateDate();
 
 		// If entity class has updateDate attribute
 		if (method_exists($entity, 'setUpdateDate'))
